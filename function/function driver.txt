@@ -1,0 +1,8 @@
+create or replace function m(name text) returns table(d_name varchar(20),adds varchar(20)) as
+' 
+  
+  begin
+ RETURN QUERY 
+   select driver.d_name,driver.adds from driver, bus,b_d_table where deport_name=name and age>50 and bus.busno=b_d_table.bno and driver.d_no=b_d_table.dno;
+  end;
+'language 'plpgsql';

@@ -1,0 +1,18 @@
+create or replace function f1(name varchar(30)) returns int as '
+declare
+ cnt int;
+begin
+select into cnt count(person1.pno) from person1,area where area_type="name" and person1.pno=area.pno;
+return cnt;
+end;
+'language 'plpgsql';
+
+
+create or replace function f3(name text) returns text as '
+declare
+ cnt text;
+begin
+ select into cnt name from person1,area where aname=name and birthdate > 15 and person1.pno=area.pno;
+return cnt;
+end;
+'language 'plpgsql';

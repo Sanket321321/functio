@@ -1,0 +1,47 @@
+q1
+create or replace function b1(routeno int) returns text as
+' 
+  declare 
+    ans text;
+  begin
+   select into ans (busno,bcapacity,deport_name)  from bus ,route where route.rno=routeno and bus.rno=route.rno;
+   return ans;
+  end;
+'language 'plpgsql';
+
+--ans 
+SELECT b1(1);
+     b1      
+-------------
+ (1,70,pune)
+(1 row)
+
+
+--q2
+create or replace function b1() returns text as
+' 
+  declare 
+    ans text;
+  begin
+   select into ans (dno,d_name,age,adds)  from bus ,driver,b_d_table where shift=''day'' and deport_name=''pune'' and date_of_duty > ''2022-10-10'' and bus.busno=b_d_table.bno and driver.d_no=b_d_table.dno;
+   return ans;
+  end;
+'language 'plpgsql';
+
+ select b1();
+          b1           
+-----------------------
+ (4,vaibhav,56,mumbai)
+(1 row)
+
+
+--3
+create or replace function b1() returns text as
+' 
+  declare 
+    ans text;
+  begin
+   select into ans (dno,d_name,age,adds)  from bus ,driver,b_d_table where shift=''day'' and deport_name=''pune'' and date_of_duty > ''2022-10-10'' and bus.busno=b_d_table.bno and driver.d_no=b_d_table.dno;
+   return ans;
+  end;
+'language 'plpgsql';
